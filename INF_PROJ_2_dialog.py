@@ -28,6 +28,11 @@ from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
 from qgis.utils import iface 
 from qgis.core import QgsWkbTypes
+from qgis.core import *
+from qgis.PyQt.QtGui import *
+from qgis.PyQt.QtWidgets import *
+from qgis.gui import QgsMessageBar
+
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
@@ -86,4 +91,19 @@ def podaj_dane_wsp(self):
         else:
             print('Nieznana geometria punktów')
             
-                        
+def przewyzszenie(self):
+    wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
+    liczba = wybrana_warstwa.featureCount()
+    if liczba == 2:
+        elementy = wybrana_warstwa.selectedFeatures()
+        H = []
+        NR = []
+        for i in elementy:
+            nr = i[0]
+            z = i[3]
+            H.append(z)
+            NR.append(nr)
+        wys = H[1]-H[0]
+        self.iface.messageBar().pushMessage(f'Przewyższenie między punktami {Nr[0]} i {Nr[1]} wynosi:{wys.3f} m')
+    elif licza<2 and liczba>2:
+        self.iface.messageBar().pushMessage(u'Error : ', u' Nieodpowiednia liczba punktów.')
