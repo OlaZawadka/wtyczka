@@ -44,13 +44,63 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
-        self.pushbutton_zlicz.clicked.connect(self.liczob)
-        self.pushbutton_wybwsp.clicked.connect(self.podaj_dane_wsp)
+        self.pushbutton_zlicz.clicked.connect(self.przewyzszenie)
+        #self.pushbutton_wybwsp.clicked.connect(self.podaj_dane_wsp)
 
+# Kocham GIK
+#komentarz
 def liczob(self):
-    pass
-
-def podaj_dane_wsp(self):
     wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
     licza_ob = wybrana_warstwa.featureCount()
-    pass
+
+
+def podaj_dane_wsp(self):
+    aktywna = iface.activeLayer()
+    sel = aktywna.selectedFeatures()
+    self.label_aktnazwa.setText(aktywna.name())
+    
+    for feature in sel:
+        geom=feature.geometry()
+        geomSinType = QgsWkbTypes.isSingleType(geom.wkbType())
+        if geom.type()== QgsWkbTypes.PointGeometry:
+            if geomSinType:
+                x = geom.asPoint()
+                
+                self.wsp.append(f'Point: {x}, \r\n')
+            else:
+                x = geom.asMultiPoint()
+                self.wsp.append(f'MultiPoint: {x}, \r\n')
+                
+        elif geom.type() == QgsWkbTypes.LineGeometry:
+                if geomSinType:
+                    x = geom.asPolyline()
+                    self.wsp.append(f'Line: {x}, \r\n')
+                else:
+                    x = geom.asMultiPolyline()
+                    self.wsp.append(f'MultiLine: {x}, \r\n')
+        elif geom.type() == QgsWkbTypes.PolygonGeometry:
+            if geomSinType:
+                x = geom.asPolygon()
+                self.wsp.append(f'Polygon: {x} \r\n')
+            else:
+                x= geom.asMultiPolygon()
+                self.wsp.appendf('MultiPolygon: {x} \r\n')
+        else:
+            print('Nieznana geometria punktów')
+            
+def przewyzszenie(self):
+    wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
+    liczba = wybrana_warstwa.featureCount()
+    if liczba == 2:
+        elementy = wybrana_warstwa.selectedFeatures()
+        H = []
+        NR = []
+        for i in elementy:
+            nr = i[0]
+            z = i[3]
+            H.append(z)
+            NR.append(nr)
+        wys = H[1]-H[0]
+        self.iface.messageBar().pushMessage(f'Przewyższenie między punktami {Nr[0]} i {Nr[1]} wynosi:{wys.3f} m')
+    elif licza<2 and liczba>2:
+        self.iface.messageBar().pushMessage(u'Error : ', u' Nieodpowiednia liczba punktów.')
