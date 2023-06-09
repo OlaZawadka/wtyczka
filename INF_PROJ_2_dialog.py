@@ -48,8 +48,42 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
         self.pushbutton_wybwsp.clicked.connect(self.podaj_dane_wsp)
 
 def liczob(self):
-    pass
+    wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
+    licza_ob = wybrana_warstwa.featureCount()
+
 
 def podaj_dane_wsp(self):
-    wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
-    pass
+    aktywna = iface.activeLayer()
+    sel = aktywna.selectedFeatures()
+    self.label_aktnazwa.setText(aktywna.name())
+    
+    for feature in sel:
+        geom=feature.geometry()
+        geomSinType = QgsWkbTypes.isSingleType(geom.wkbType())
+        if geom.type()== QgsWkbTypes.PointGeometry:
+            if geomSinType:
+                x = geom.asPoint()
+                
+                self.wsp.append(f'Point: {x}, \r\n')
+            else:
+                x = geom.asMultiPoint()
+                self.wsp.append(f'MultiPoint: {x}, \r\n')
+                
+        elif geom.type() == QgsWkbTypes.LineGeometry:
+                if geomSinType:
+                    x = geom.asPolyline()
+                    self.wsp.append(f'Line: {x}, \r\n')
+                else:
+                    x = geom.asMultiPolyline()
+                    self.wsp.append(f'MultiLine: {x}, \r\n')
+        elif geom.type() == QgsWkbTypes.PolygonGeometry:
+            if geomSinType:
+                x = geom.asPolygon()
+                self.wsp.append(f'Polygon: {x} \r\n')
+            else:
+                x= geom.asMultiPolygon()
+                self.wsp.appendf('MultiPolygon: {x} \r\n')
+        else:
+            print('Nieznana geometria punktów')
+            
+                        
