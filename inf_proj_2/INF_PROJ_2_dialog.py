@@ -128,7 +128,6 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
                 X = X[::-1]
                 Y = Y[::-1]
             P = 0.5 * np.abs(np.dot(X, np.roll(Y, 1)) - np.dot(Y, np.roll(X, 1)))
-            NR = ' '.join(str(numer) for numer in Numer)
             self.iface.messageBar().pushMessage(f'Pole powierzchni między punktami {Numer[0]}, {Numer[1]} i {Numer[2]} wynosi:{P:.3f} m^2')
         elif liczba<3:
             self.iface.messageBar().pushMessage(u'Error : ', u' Nieodpowiednia liczba punktów.')
