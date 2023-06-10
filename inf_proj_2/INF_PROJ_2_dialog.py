@@ -28,7 +28,7 @@ from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
 from qgis.utils import iface 
 from qgis.core import QgsWkbTypes
-
+import numpy as np
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'INF_PROJ_2_dialog_base.ui'))
@@ -46,6 +46,7 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
         self.setupUi(self)
         self.pushButton_zlicz.clicked.connect(self.przewyzszenie)
         #self.pushbutton_wybwsp.clicked.connect(self.podaj_dane_wsp)
+        self.pushButton_pole.clicked.connect(self.polepow)
 
 # Kocham GIK
 #komentarz
@@ -105,5 +106,29 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
         elif liczba<2 and liczba>2:
             self.iface.messageBar().pushMessage(u'Error : ', u' Nieodpowiednia liczba punktów.')
             
-    def polepow():
-        pass
+    def polepow(self):
+        wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
+        liczba = wybrana_warstwa.featureCount()
+        if liczba  >= 3:
+            elementy = wybrana_warstwa.selectedFeatures()
+            Numer = []
+            XY = []
+            for i in elementy:
+                nr = i["Nr"]
+                x = i["X"]
+                y = i["Y"]
+                XY.append(x, y)
+                Numer.append(nr)
+            XY = np.array(XY)
+            X = XY[:,0]
+            Y = XY[:,1]
+            sort = sorted(zip(X, Y), key=lambda point: point[0])
+            X, Y = zip(*sort)
+            if Y[-2] > Y[-1]:
+                X = X[::-1]
+                Y = Y[::-1]
+            P = 0.5 * np.abs(np.dot(X, np.roll(Y, 1)) - np.dot(Y, np.roll(X, 1)))
+            NR = ' '.join(str(numer) for numer in Numer)
+            self.iface.messageBar().pushMessage(f'Pole powierzchni między punktami {Numer[0]}, {Numer[1]} i {Numer[2]} wynosi:{P:.3f} m^2')
+        elif liczba<3:
+            self.iface.messageBar().pushMessage(u'Error : ', u' Nieodpowiednia liczba punktów.')
