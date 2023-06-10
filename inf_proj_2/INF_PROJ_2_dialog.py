@@ -48,6 +48,24 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
         self.pushButton_pole.clicked.connect(self.polepow)
     import numpy as np
 
+   
+    def przewyzszenie(self):
+        wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
+        liczba = wybrana_warstwa.featureCount()
+        if liczba == 2:
+            elementy = wybrana_warstwa.selectedFeatures()
+            H = []
+            Numer = []
+            for i in elementy:
+                nr = i["Nr"]
+                z = i["Z"]
+                H.append(z)
+                Numer.append(nr)
+            wys = H[1]-H[0]
+            self.label_wynik.setText(f'Przewyższenie między punktami {Numer[0]} i {Numer[1]} wynosi:{wys:.3f} m')
+        elif liczba<2 and liczba>2:
+            self.label_wynik.setText(u'Error : ', u' Nieodpowiednia liczba punktów.')
+            
     def polepow(self):
         wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
         liczba = wybrana_warstwa.featureCount()
@@ -71,28 +89,7 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
                     X = list(X)[::-1]
                     Y = list(Y)[::-1]
                 P = 0.5 * np.abs(np.dot(X, np.roll(Y, 1)) - np.dot(Y, np.roll(X, 1)))
-                self.iface.messageBar().pushMessage(f'Pole powierzchni między punktami {Numer[0]}, {Numer[1]} wynosi: {P:.3f} m^2')
+                self.label_wynik.setText(f'Pole powierzchni między punktami {Numer[0]}, {Numer[1]} wynosi: {P:.3f} m^2')
             else:
-                self.iface.messageBar().pushMessage('Error:', 'Nie wybrano wystarczającej liczby punktów.')
-        else:
-            self.iface.messageBar().pushMessage('Error:', 'Nieodpowiednia liczba punktów w warstwie.')
-
-                
-    def przewyzszenie(self):
-        wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
-        liczba = wybrana_warstwa.featureCount()
-        if liczba == 2:
-            elementy = wybrana_warstwa.selectedFeatures()
-            H = []
-            Numer = []
-            for i in elementy:
-                nr = i["Nr"]
-                z = i["Z"]
-                H.append(z)
-                Numer.append(nr)
-            wys = H[1]-H[0]
-            self.iface.messageBar().pushMessage(f'Przewyższenie między punktami {Numer[0]} i {Numer[1]} wynosi:{wys:.3f} m')
-        elif liczba<2 and liczba>2:
-            self.iface.messageBar().pushMessage(u'Error : ', u' Nieodpowiednia liczba punktów.')
-            
-   
+                self.label_wynik.setText(u'Error:', u'Nie wybrano wystarczającej liczby punktów.')
+       
