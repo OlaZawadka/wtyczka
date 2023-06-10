@@ -27,7 +27,6 @@ import os
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
 from qgis.utils import iface 
-from qgis.core import QgsWkbTypes
 import numpy as np
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
@@ -47,47 +46,37 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
         self.pushButton_zlicz.clicked.connect(self.przewyzszenie)
         #self.pushbutton_wybwsp.clicked.connect(self.podaj_dane_wsp)
         self.pushButton_pole.clicked.connect(self.polepow)
+    import numpy as np
 
-# Kocham GIK
-#komentarz
-    def liczob(self):
+    def polepow(self):
         wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
-        licza_ob = wybrana_warstwa.featureCount()
-
-
-    def podaj_dane_wsp(self):
-        aktywna = iface.activeLayer()
-        sel = aktywna.selectedFeatures()
-        self.label_aktnazwa.setText(aktywna.name())
-        
-        for feature in sel:
-            geom=feature.geometry()
-            geomSinType = QgsWkbTypes.isSingleType(geom.wkbType())
-            if geom.type()== QgsWkbTypes.PointGeometry:
-                if geomSinType:
-                    x = geom.asPoint()
-                    
-                    self.wsp.append(f'Point: {x}, \r\n')
-                else:
-                    x = geom.asMultiPoint()
-                    self.wsp.append(f'MultiPoint: {x}, \r\n')
-                    
-            elif geom.type() == QgsWkbTypes.LineGeometry:
-                    if geomSinType:
-                        x = geom.asPolyline()
-                        self.wsp.append(f'Line: {x}, \r\n')
-                    else:
-                        x = geom.asMultiPolyline()
-                        self.wsp.append(f'MultiLine: {x}, \r\n')
-            elif geom.type() == QgsWkbTypes.PolygonGeometry:
-                if geomSinType:
-                    x = geom.asPolygon()
-                    self.wsp.append(f'Polygon: {x} \r\n')
-                else:
-                    x= geom.asMultiPolygon()
-                    self.wsp.appendf('MultiPolygon: {x} \r\n')
+        liczba = wybrana_warstwa.featureCount()
+        if liczba >= 2:
+            elementy = wybrana_warstwa.selectedFeatures()
+            if len(elementy) >= 2:
+                Numer = []
+                XY = []
+                for i in elementy[:2]:
+                    nr = i["Nr"]
+                    x = i["X"]
+                    y = i["Y"]
+                    XY.append((x, y))
+                    Numer.append(nr)
+                XY = np.array(XY)
+                X = XY[:, 0]
+                Y = XY[:, 1]
+                sort = sorted(zip(X, Y), key=lambda point: point[0])
+                X, Y = zip(*sort)
+                if Y[-2] > Y[-1]:
+                    X = list(X)[::-1]
+                    Y = list(Y)[::-1]
+                P = 0.5 * np.abs(np.dot(X, np.roll(Y, 1)) - np.dot(Y, np.roll(X, 1)))
+                self.iface.messageBar().pushMessage(f'Pole powierzchni między punktami {Numer[0]}, {Numer[1]} wynosi: {P:.3f} m^2')
             else:
-                print('Nieznana geometria punktów')
+                self.iface.messageBar().pushMessage('Error:', 'Nie wybrano wystarczającej liczby punktów.')
+        else:
+            self.iface.messageBar().pushMessage('Error:', 'Nieodpowiednia liczba punktów w warstwie.')
+
                 
     def przewyzszenie(self):
         wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
@@ -106,28 +95,4 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
         elif liczba<2 and liczba>2:
             self.iface.messageBar().pushMessage(u'Error : ', u' Nieodpowiednia liczba punktów.')
             
-    def polepow(self):
-        wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
-        liczba = wybrana_warstwa.featureCount()
-        if liczba  >= 3:
-            elementy = wybrana_warstwa.selectedFeatures()
-            Numer = []
-            XY = []
-            for i in elementy:
-                nr = i["Nr"]
-                x = i["X"]
-                y = i["Y"]
-                XY.append([x, y])
-                Numer.append(nr)
-            XY = np.array(XY)
-            X = XY[:,0]
-            Y = XY[:,1]
-            sort = sorted(zip(X, Y), key=lambda point: point[0])
-            X, Y = zip(*sort)
-            if Y[-2] > Y[-1]:
-                X = X[::-1]
-                Y = Y[::-1]
-            P = 0.5 * np.abs(np.dot(X, np.roll(Y, 1)) - np.dot(Y, np.roll(X, 1)))
-            self.iface.messageBar().pushMessage(f'Pole powierzchni między punktami {Numer[0]}, {Numer[1]} i {Numer[2]} wynosi:{P:.3f} m^2')
-        elif liczba<3:
-            self.iface.messageBar().pushMessage(u'Error : ', u' Nieodpowiednia liczba punktów.')
+   
