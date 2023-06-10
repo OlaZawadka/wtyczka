@@ -117,7 +117,7 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
                 nr = i["Nr"]
                 x = i["X"]
                 y = i["Y"]
-                XY.append(x, y)
+                XY.append([x, y])
                 Numer.append(nr)
             XY = np.array(XY)
             X = XY[:,0]
