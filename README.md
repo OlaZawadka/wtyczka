@@ -3,6 +3,8 @@ Wtyczka użwana w programie QGIS pozwala na obliczenie przewyższenia pomiędzy 
 ## Minimalne wymagania sprzętowe 
 - Windows 10
 - QGIS 3.24
+## Wymagania techniczne
+Aby wtyczka była w stanie dokonać obliczeń, należy wgrać do programu plik w formacie csv ze współrzędnymi punktów w kolejności nr, X, Y, Z
 ## Opis pracy wtyczki
 Użytkownik musi zainstalować wtyczkę w swoiej wersji QGISa.
 #### Oblicznie przewyższenia
