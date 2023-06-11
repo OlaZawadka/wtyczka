@@ -90,7 +90,7 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
                     Y = list(Y)[::-1]
                 P = 0.5 * np.abs(np.dot(X, np.roll(Y, 1)) - np.dot(Y, np.roll(X, 1)))
                 n = ' '.join(str(nr) for nr in Numer)
-                self.label_wynik.setText(f'Pole powierzchni między punktami {n} wynosi: {P:.3f} m^2')
+                self.label_wynik.setText(f'Pole powierzchni między punktami\n {n} wynosi:\n {P:.3f} m^2')
             else:
                 self.label_wynik.setText('Error: Nie wybrano wystarczającej liczby punktów.')
        
