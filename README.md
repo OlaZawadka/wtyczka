@@ -27,7 +27,7 @@ Przewyższenie
 ```
 Pole powierzchni
 ```
-- otrzymujemy wynik obliczeń
+- otrzymujemy wynik obliczeń, z dokładnością milimetrową
 
 ## Reakcja wtyczki na błędy
 #### Użytkownik wybrał mniej lub więcej punktów niż jest wymagane.
