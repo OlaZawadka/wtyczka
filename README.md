@@ -28,9 +28,9 @@ Pole powierzchni
 ```
 - otrzymujemy wynik obliczeń
 ## Przykładowe wyniki
-#### Przewyższenie między punktami:
+#### Przewyższenie między punktami 1004.0 i 10005.0 wynosi:
 ```
-coś m^2
+-0.071 m
 ```
 #### Pole powierzchni między punktami:
 ```
