@@ -32,9 +32,9 @@ Pole powierzchni
 ```
 -0.071 m
 ```
-#### Pole powierzchni między punktami:
+#### Pole powierzchni między punktami 10004, 10005 i 1006 wynosi:
 ```
-coś m^2
+3536.500 m^2
 ```
 ## Reakcja wtyczki na błędy
 #### Użytkownik wybrał mniej lub więcej punktów niż jest wymagane.
