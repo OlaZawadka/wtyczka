@@ -30,4 +30,7 @@ coś
 ```
 coś
 ```
+## Reakcja wtyczki na błędy
+## Użytkownik wybrał mniej punktów niż jest wymagane
+Program odpowiada ```Wybrano za mało punktów```
 
