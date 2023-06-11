@@ -12,4 +12,12 @@ Użytkownik musi zainstalować wtyczkę w swoiej wersji QGISa.
 ```
 Oblicz przewyższenie
 ```
+- Otrzymujemy wynik obliczeń
 #### Obliczenie pola powierzchni
+- wybieramy trzy dowolne punkty na jednej warstwie 
+- otwieramy pobraną wtyczkę 
+- wynieramy przycisk 
+```
+Oblicz pole powierzchni
+```
+- Otrzymujemy wynik obliczeń
