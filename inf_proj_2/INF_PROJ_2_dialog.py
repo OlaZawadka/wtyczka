@@ -74,7 +74,7 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
             if len(elementy) >= 3:
                 Numer = []
                 XY = []
-                for i in elementy[:2]:
+                for i in elementy:
                     nr = i["Nr"]
                     x = int(float(i["X"]))
                     y = int(float(i["Y"]))
