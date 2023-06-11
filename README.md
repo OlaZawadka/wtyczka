@@ -28,15 +28,7 @@ Przewyższenie
 Pole powierzchni
 ```
 - otrzymujemy wynik obliczeń
-## Przykładowe wyniki
-#### Przewyższenie między punktami:
-```
-coś
-```
-#### Pole powierzchni między punktami:
-```
-coś
-```
+
 ## Reakcja wtyczki na błędy
 #### Użytkownik wybrał mniej lub więcej punktów niż jest wymagane.
 Program odpowiada ```Nieodpowiednia liczba punktów```
