@@ -51,18 +51,18 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
    
     def przewyzszenie(self):
         wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
-        liczba = wybrana_warstwa.featureCount(wybrana_warstwa.selectedFeatures())
+        liczba = len(wybrana_warstwa.selectedFeatures())
         if liczba == 2:
             elementy = wybrana_warstwa.selectedFeatures()
             H = []
             Numer = []
             for i in elementy:
-                nr = i["Nr"]
-                z = i["Z"]
+                nr = int(float(i["Nr"]))
+                z = int(float(i["Z"]))
                 H.append(z)
                 Numer.append(nr)
-            wys = z[1]-z[0]
-            self.label_wynik.setText(f'Przewyższenie między punktami {Numer[0]} i {Numer[1]} wynosi:{wys:.3f} m')
+            wys = H[1]-H[0]
+            self.label_wynik.setText(f'Przewyższenie między punktami:\\ {Numer[0]} i {Numer[1]} wynosi:{wys:.3f} m')
         else:
             self.label_wynik.setText('Error : Nieodpowiednia liczba punktów.')
             
@@ -86,8 +86,8 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
                 sort = sorted(zip(X, Y), key=lambda point: point[0])
                 X, Y = zip(*sort)
                 if Y[-2] > Y[-1]:
-                    X = list(X)[::-1]
-                    Y = list(Y)[::-1]
+                    X = float(list(X)[::-1])
+                    Y = float(list(Y)[::-1])
                 P = 0.5 * np.abs(np.dot(X, np.roll(Y, 1)) - np.dot(Y, np.roll(X, 1)))
                 self.label_wynik.setText(f'Pole powierzchni między punktami {Numer[0]}, {Numer[1]} wynosi: {P:.3f} m^2')
             else:
