@@ -30,11 +30,11 @@ Pole powierzchni
 ## Przykładowe wyniki
 #### Przewyższenie między punktami:
 ```
-coś
+coś m^2
 ```
 #### Pole powierzchni między punktami:
 ```
-coś
+coś m^2
 ```
 ## Reakcja wtyczki na błędy
 #### Użytkownik wybrał mniej lub więcej punktów niż jest wymagane.
