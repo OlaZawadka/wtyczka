@@ -31,6 +31,8 @@ coś
 coś
 ```
 ## Reakcja wtyczki na błędy
-## Użytkownik wybrał mniej punktów niż jest wymagane
+#### Użytkownik wybrał mniej punktów niż jest wymagane
 Program odpowiada ```Wybrano za mało punktów```
+#### Użytkownik wybrał więcej punktów niż jest wymagane 
+Program odpowiada ```Wybrano za dużo punktów```
 
