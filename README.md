@@ -9,7 +9,7 @@ Kolejność danych: ```Nr   X    Y    Z```
 Dane w pliku csv powinny być rodzielone punktorem "." oraz mieć dokładność conajmniej 3 miejsca po przecinku, aby program zadziałał prawidłowo.
 ## Opis pracy wtyczki
 Użytkownik musi zainstalować wtyczkę w swojej wersji QGISa.
-Warstwa z punktami powinna zostać zimportowana do programu w rozszerzeniu csv, poprzez funkcje "Warstwa" --> "Zarządzanie źródłami danych", następnie dodać ścieżkę do pliku oraz nazwę, a w "Ustawieniach geometrii" zaznaczyc pola X i Y. Ostatnim krokiem jest zaznaczenie pola "Dodaj". Gotowe.
+Warstwa z punktami powinna zostać zimportowana do programu QGIS w rozszerzeniu shp, z pliku "przykładowy_plik".
 #### Oblicznie przewyższenia
 - wybieramy dwa dowolne punkty na jednej warstwie
 - otwieramy pobraną wtyczkę
