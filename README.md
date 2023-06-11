@@ -1,5 +1,5 @@
 # Wtyczka do QGIS - PyQGIS
-Wtyczka użwana w programie QGIS pozwala na obliczenie przewyższenia pomiędzy dwoma wybranymi punktami oraz obliczenie pola powierzchni na podstawie współrzędnych wybranych trzech. Obliczenia wykonywane są przy wykorzystaniu metody Gaussa.
+Wtyczka użwana w programie QGIS pozwala na obliczenie przewyższenia pomiędzy dwoma wybranymi punktami oraz obliczenie pola powierzchni na podstawie współrzędnych wybranych conajmniej trzech punktów. Obliczenia wykonywane są przy wykorzystaniu metody Gaussa.
 ## Minimalne wymagania sprzętowe 
 - Windows 10
 - QGIS 3.22
@@ -9,6 +9,7 @@ Kolejność danych: ```Nr   X    Y    Z```
 Dane w pliku csv powinny być rodzielone punktorem "." oraz mieć dokładność conajmniej 3 miejsca po przecinku, aby program zadziałał prawidłowo.
 ## Opis pracy wtyczki
 Użytkownik musi zainstalować wtyczkę w swojej wersji QGISa.
+Warstwa z punktami powinna zostać zimportowana do programu w rozszerzeniu csv, poprzez funkcje "Warstwa" --> "Zarządzanie warstwami", następnie dodać ścieżkę do pliku oraz nazwę, a w "Ustawieniach geometrii" zaznaczyc pola X i Y. Ostatnim krokiem jest zaznaczenie pola "Dodaj". Gotowe.
 #### Oblicznie przewyższenia
 - wybieramy dwa dowolne punkty na jednej warstwie
 - otwieramy pobraną wtyczkę
@@ -19,7 +20,7 @@ Przewyższenie
 ```
 - otrzymujemy wynik obliczeń, z dokładnością milimetrową
 #### Obliczenie pola powierzchni
-- wybieramy trzy dowolne punkty na jednej warstwie 
+- wybieramy minimum trzy dowolne punkty na jednej warstwie 
 - otwieramy pobraną wtyczkę 
 - z rozwijanej listy wybieramy warstwę aktywną, na której znajduja się punkty 
 - wybieramy przycisk 
