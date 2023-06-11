@@ -51,7 +51,7 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
    
     def przewyzszenie(self):
         wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
-        liczba = wybrana_warstwa.featureCount()
+        liczba = wybrana_warstwa.featureCount(wybrana_warstwa.selectedFeatures())
         if liczba == 2:
             elementy = wybrana_warstwa.selectedFeatures()
             H = []
@@ -61,10 +61,10 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
                 z = i["Z"]
                 H.append(z)
                 Numer.append(nr)
-            wys = H[1]-H[0]
+            wys = z[1]-z[0]
             self.label_wynik.setText(f'Przewyższenie między punktami {Numer[0]} i {Numer[1]} wynosi:{wys:.3f} m')
-        elif liczba<2 and liczba>2:
-            self.label_wynik.setText(u'Error : ', u' Nieodpowiednia liczba punktów.')
+        else:
+            self.label_wynik.setText('Error : Nieodpowiednia liczba punktów.')
             
     def polepow(self):
         wybrana_warstwa = self.mMapLayerComboBox_warstwa.currentLayer()
@@ -91,5 +91,5 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
                 P = 0.5 * np.abs(np.dot(X, np.roll(Y, 1)) - np.dot(Y, np.roll(X, 1)))
                 self.label_wynik.setText(f'Pole powierzchni między punktami {Numer[0]}, {Numer[1]} wynosi: {P:.3f} m^2')
             else:
-                self.label_wynik.setText(u'Error:', u'Nie wybrano wystarczającej liczby punktów.')
+                self.label_wynik.setText('Error: Nie wybrano wystarczającej liczby punktów.')
        
