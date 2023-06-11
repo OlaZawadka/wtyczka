@@ -28,13 +28,13 @@ Pole powierzchni
 ```
 - otrzymujemy wynik obliczeń
 ## Przykładowe wyniki
-#### Przewyższenie między punktami 10004.0 i 10005.0 wynosi:
+#### Przewyższenie między punktami:
 ```
--0.071 m
+coś
 ```
-#### Pole powierzchni między punktami 10004, 10005 i 1006 wynosi:
+#### Pole powierzchni między punktami:
 ```
-3536.500 m^2
+coś
 ```
 ## Reakcja wtyczki na błędy
 #### Użytkownik wybrał mniej lub więcej punktów niż jest wymagane.
