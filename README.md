@@ -31,6 +31,6 @@ Pole powierzchni
 
 ## Reakcja wtyczki na błędy
 #### Użytkownik wybrał mniej lub więcej punktów niż jest wymagane.
-Program odpowiada ```Nieodpowiednia liczba punktów```
+Program odpowiada: ```Nieodpowiednia liczba punktów```
 
 
