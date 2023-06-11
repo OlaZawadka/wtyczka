@@ -4,6 +4,12 @@ Wtyczka użwana w programie QGIS pozwala na obliczenie przewyższenia pomiędzy 
 - Windows 10
 - QGIS 3.24
 ## Opis pracy wtyczki
+Użytkownik musi zainstalować wtyczkę w swoiej wersji QGISa.
 #### Oblicznie przewyższenia
-
+- wybieramy dwa dowolne punkty na jednej warstwie
+- otwieramy pobraną wtyczkę
+- wybieramy przycisk
+```
+Oblicz przewyższenie
+```
 #### Obliczenie pola powierzchni
