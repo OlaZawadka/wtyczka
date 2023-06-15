@@ -26,8 +26,8 @@ import os
 
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
-from qgis.utils import iface 
 import numpy as np
+from qgis.core import QgsWkbTypes,QgsVectorLayer
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'INF_PROJ_2_dialog_base.ui'))
@@ -76,9 +76,10 @@ class INF_PROJ_2Dialog(QtWidgets.QDialog, FORM_CLASS):
                 XY = []
                 for i in elementy:
                     nr = i["Nr"]
-                    x = float(i["X"])
-                    y = float(i["Y"])
-                    XY.append((x, y))
+                    coordinates = i.geometry().asPoint()
+                    x_w = float(coordinates.x())
+                    y_w = float(coordinates.y())
+                    XY.append((x_w, y_w))
                     Numer.append(nr)
                 XY = np.array(XY)
                 X = XY[:, 0]
