@@ -5,7 +5,7 @@ Wtyczka użwana w programie QGIS pozwala na obliczenie przewyższenia pomiędzy 
 - QGIS 3.22
 ## Wymagania techniczne
 Aby wtyczka była w stanie dokonać obliczeń, należy wgrać do programu "przykładowy_plik" w formacie shp ze współrzędnymi punktów, najprościej przenieść plik na pole warstw (jest to plik z wartościami atrybutów w tabeli: --> wartość tabelaryczna przedstawiona poniżej). 
-Jeśli dane znajdują się w pliku csv to wartości powinny być rodzielone punktorem "." oraz mieć dokładność conajmniej 3 miejsca po przecinku, a kolejność tabelaryczna danych powinna być następująca: ```Nr   X    Y    Z``` , aby program zadziałał prawidłowo.
+
 ## Opis pracy wtyczki
 Użytkownik musi zainstalować wtyczkę w swojej wersji QGISa.
 Folder z wtyczką, po pobraniu powinien zostać przeniesiony do folderu "plugins", utworzonego automatycznie przez program QGIS ( w wyznaczonej ścieżce ) podczas instalowania aplikacji.
@@ -28,7 +28,9 @@ Przewyższenie
 Pole powierzchni
 ```
 - otrzymujemy wynik obliczeń, z dokładnością milimetrową
-
+## Tabela atrybutów
+Jeśli dane znajdują się w pliku csv to wartości powinny być rodzielone punktorem "." oraz mieć dokładność conajmniej 3 miejsca po przecinku. Kolejność tabelaryczna danych powinna być następująca: 
+```| Nr | X [m] | Y [m] | Z [m] |```
 ## Reakcja wtyczki na błędy
 #### Użytkownik wybrał mniej lub więcej punktów niż jest wymagane.
 Program odpowiada: ```Nieodpowiednia liczba punktów```
