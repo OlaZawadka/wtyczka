@@ -4,8 +4,8 @@ Wtyczka użwana w programie QGIS pozwala na obliczenie przewyższenia pomiędzy 
 - Windows 10
 - QGIS 3.22
 ## Wymagania techniczne
-Aby wtyczka była w stanie dokonać obliczeń, należy wgrać do programu "przykładowy_plik" w formacie shp ze współrzędnymi punktów, najprościej przenieść plik na pole warstw. 
-Jeśli dane znajdują się w pliku csv powinny być rodzielone punktorem "." oraz mieć dokładność conajmniej 3 miejsca po przecinku, a kolejność tabelaryczna danych powinna być następująca: ```Nr   X    Y    Z``` , aby program zadziałał prawidłowo.
+Aby wtyczka była w stanie dokonać obliczeń, należy wgrać do programu "przykładowy_plik" w formacie shp ze współrzędnymi punktów, najprościej przenieść plik na pole warstw (jest to plik z wartościami atrybutów w tabeli: --> wartość tabelaryczna przedstawiona poniżej). 
+Jeśli dane znajdują się w pliku csv to wartości powinny być rodzielone punktorem "." oraz mieć dokładność conajmniej 3 miejsca po przecinku, a kolejność tabelaryczna danych powinna być następująca: ```Nr   X    Y    Z``` , aby program zadziałał prawidłowo.
 ## Opis pracy wtyczki
 Użytkownik musi zainstalować wtyczkę w swojej wersji QGISa.
 Folder z wtyczką, po pobraniu powinien zostać przeniesiony do folderu "plugins", utworzonego automatycznie przez program QGIS ( w wyznaczonej ścieżce ) podczas instalowania aplikacji.
